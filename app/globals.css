@@ -1,2 +1,17 @@
 @import "tailwindcss";
 
+
+:root {
+  --bg-main: #fef2f2;
+  --bg-card: #fecaca;
+  --bg-sidebar: #fee2e2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-main);
+  min-height: 100vh;
+}

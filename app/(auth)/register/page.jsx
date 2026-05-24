@@ -204,7 +204,7 @@ export default function RegisterPage() {
           {/* Login link */}
           <p className="text-center text-sm text-gray-500 mt-5">
             มีบัญชีอยู่แล้ว?{" "}
-            <Link href="/auth/login" className="text-gray-900 font-semibold hover:underline">
+            <Link href="/login" className="text-gray-900 font-semibold hover:underline">
               เข้าสู่ระบบ
             </Link>
           </p>

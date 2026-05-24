@@ -121,7 +121,7 @@ export default function LoginPage() {
           <p className="text-center text-sm text-gray-500 mt-6">
             ยังไม่มีบัญชี?{" "}
             <Link
-              href="/auth/register"
+              href="/register"
               className="text-gray-900 font-semibold hover:underline"
             >
               สมัครสมาชิก
