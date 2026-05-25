@@ -1,7 +1,7 @@
 "use client";
 
 export default function GenreList({ genres, selectedGenre, onSelect }) {
-  console.log("Genres:", genres);
+  // console.log("Genres:", genres);
   return (
     <div className="bg-white rounded-xl shadow-sm p-5">
       <h3 className="font-bold text-gray-800 mb-4 text-sm uppercase tracking-wide">

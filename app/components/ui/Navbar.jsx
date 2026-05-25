@@ -67,7 +67,7 @@ export default function Navbar({ user, profile }) {
             className="relative flex items-center px-3 py-1.5 rounded hover:bg-gray-700 transition-colors"
           >
             <ShoppingBasket size={20} />
-            {basketCount > 0 && (
+            {basketCount >= 0  && (
               <span className="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
                 {basketCount}
               </span>

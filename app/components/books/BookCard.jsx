@@ -7,6 +7,7 @@ import { useState } from "react";
 export default function BookCard({ book, onAddSuccess }) {
   const [adding, setAdding] = useState(false);
   const [added, setAdded] = useState(false);
+  const inStock = Number(book.amounts) > 0;
   
   const handleAddToBasket = async (e) => {
     e.preventDefault();
@@ -15,6 +16,9 @@ export default function BookCard({ book, onAddSuccess }) {
       await addToBasket(book.isbn);
       setAdded(true);
       onAddSuccess?.();
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("basketUpdated"));
+      }
       setTimeout(() => setAdded(false), 2000);
     } catch (err) {
       console.error("Add to basket failed:", err);
@@ -56,12 +60,19 @@ export default function BookCard({ book, onAddSuccess }) {
             </span>
 
             <button
-              onClick={handleAddToBasket}
-              disabled={adding}
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                if (!inStock) return;
+                handleAddToBasket(e);
+              }}
+              disabled={adding || !inStock}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200
                 ${added
                   ? "bg-green-500 text-white"
-                  : "bg-gray-900 hover:bg-gray-700 text-white disabled:bg-gray-300"
+                  : inStock
+                    ? "bg-gray-900 hover:bg-gray-700 text-white disabled:bg-gray-300"
+                    : "bg-gray-400 text-white cursor-not-allowed"
                 }`}
             >
               {adding ? (
@@ -69,7 +80,7 @@ export default function BookCard({ book, onAddSuccess }) {
               ) : (
                 <ShoppingCart size={13} />
               )}
-              {added ? "เพิ่มแล้ว ✓" : "ใส่ตะกร้า"}
+              { !inStock ? "สินค้าหมด" : (added ? "เพิ่มแล้ว ✓" : "ใส่ตะกร้า") }
             </button>
           </div>
         </div>

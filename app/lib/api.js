@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-console.log("API Base URL:", BASE_URL);
+// console.log("API Base URL:", BASE_URL);
 // ── Axios instance ──────────────────────────────────────────
 const api = axios.create({ baseURL: BASE_URL });
 
@@ -59,5 +59,8 @@ export const submitOrder = () => api.post("/baskets/add/orders");
 // ── Chart ───────────────────────────────────────────────────
 export const getTop10Books = (start_date, end_date) =>
   api.get("/baskets/show/top10", { params: { start_date, end_date } });
+
+// Fetch book detail by ISBN
+export const getBasketDetail = (isbn) => api.get("/book-by-isbn/", { params: { isbn } });
 
 export default api;
